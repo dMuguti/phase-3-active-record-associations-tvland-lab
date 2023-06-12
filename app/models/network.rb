@@ -1,3 +1,11 @@
-class Network < ActiveRecord::Base
+class Network < ApplicationRecord
+    has_many :shows
   
-end
+    def shows_list
+      shows.map(&:name)
+    end
+  
+    def sorry
+      "We're sorry about passing on John Mulaney's pilot"
+    end
+  end

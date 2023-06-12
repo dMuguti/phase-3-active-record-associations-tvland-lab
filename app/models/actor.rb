@@ -1,3 +1,12 @@
-class Actor < ActiveRecord::Base
+class Actor < ApplicationRecord
+    has_many :characters
+    has_many :shows, through: :characters
   
-end
+    def full_name
+      "#{first_name} #{last_name}"
+    end
+  
+    def list_roles
+      characters.map { |character| "#{character.name} - #{character.show.name}" }
+    end
+  end

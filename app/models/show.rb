@@ -1,3 +1,9 @@
-class Show < ActiveRecord::Base
+class Show < ApplicationRecord
+    has_many :characters
+    has_many :actors, through: :characters
+    belongs_to :network
   
-end
+    def actors_list
+      actors.map(&:full_name)
+    end
+  end
